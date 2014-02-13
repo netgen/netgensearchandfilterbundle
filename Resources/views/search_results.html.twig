@@ -1,0 +1,31 @@
+{% extends pagelayout %}
+
+{% block content %}
+
+    <h1>{{ ez_render_field( content, 'name' ) }}</h1>
+
+    {% include form_template with { form: form, location: location} %}
+
+    {% if show_results  %}
+        <h2>{{ 'Search results'|trans }}</h2>
+
+        <p>{{ 'Found:'|trans }} {{ pager.getNbResults() }}</p>
+
+        <ul>
+            {% for hit in pager %}
+                <li><a href="{{ path( 'ez_urlalias', {'locationId': hit.valueObject.contentInfo.mainLocationId} ) }}">{{ ez_content_name( hit.valueObject ) }}</a></li>
+            {% endfor %}
+        </ul>
+
+        {% if pager.haveToPaginate() %}
+            <div class="pagerfanta">
+                {{ pagerfanta( pager, 'twitter_bootstrap_translated', {
+                    'routeName': 'ez_urlalias',
+                    'routeParams': query_string|merge({'locationId': content.contentInfo.mainLocationId})
+                } )
+                }}
+            </div>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

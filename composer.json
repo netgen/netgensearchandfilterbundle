@@ -1,0 +1,19 @@
+{
+    "name": "netgen/searchandfilter-bundle",
+    "description": "Netgen Search And Filter Bundle is an eZ Publish 5 solution for configuring pages with custom searching and filtering",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Netgen",
+            "homepage": "http://www.netgenlabs.com"
+        }
+    ],
+    "require": {
+        "ezsystems/ezpublish-kernel": "*"
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Netgen/SearchAndFilterBundle",
+    "autoload": {
+        "psr-0": { "Netgen\\SearchAndFilterBundle": "" }
+    }
+}
