@@ -52,14 +52,14 @@ class SearchAdapter implements AdapterInterface {
      *
      * @return integer The number of results.
      */
-    public function getNbResults()
+    public function getNbResults($params = array())
     {
 
         if ( isset( $this->nbResults ) )
         {
             return $this->nbResults;
         }
-        $this->nbResults = $this->handler->searchCount( $this->form, $this->criteriaBuilder );
+        $this->nbResults = $this->handler->searchCount( $this->form, $this->criteriaBuilder, $params );
         return $this->nbResults;
     }
 
@@ -71,9 +71,9 @@ class SearchAdapter implements AdapterInterface {
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Search\SearchHit The slice.
      */
-    public function getSlice( $offset, $length )
+    public function getSlice( $offset, $length, $params = array() )
     {
-        $searchResult = $this->handler->search( $this->form, $this->criteriaBuilder, $this->resultConverter, $offset, $length );
+        $searchResult = $this->handler->search( $this->form, $this->criteriaBuilder, $this->resultConverter, $offset, $length, $params );
         if ( !isset( $this->nbResults ) )
         {
             $this->nbResults = $searchResult->totalCount;

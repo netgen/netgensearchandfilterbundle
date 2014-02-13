@@ -23,9 +23,9 @@ class DefaultSearchHandler implements SearchHandler {
      *
      * @return result array
      */
-    public function search( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder, SearchResultConverter $resultConverter, $offset, $length ) {
+    public function search( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder, SearchResultConverter $resultConverter, $offset, $length, $params = array() ) {
 
-        $criteria = $searchCriteriaBuilder->build($form, $offset, $length);
+        $criteria = $searchCriteriaBuilder->build($form, $offset, $length, $params);
 
         $searchResults = $this->repository->getSearchService()->findContent( $criteria );
 
@@ -36,9 +36,9 @@ class DefaultSearchHandler implements SearchHandler {
      * Return total search result count
      * @return count
      */
-    public function searchCount( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder ) {
+    public function searchCount( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder, $params ) {
 
-        $criteria = $searchCriteriaBuilder->build($form, 0, 0);
+        $criteria = $searchCriteriaBuilder->build($form, 0, 0, $params = array());
 
         $searchResults = $this->repository->getSearchService()->findContent( $criteria );
 

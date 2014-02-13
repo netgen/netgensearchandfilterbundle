@@ -12,7 +12,7 @@ class LegacyBasicSearchCriteriaBuilder implements SearchCriteriaBuilder {
      *
      * @return criteria array
      */
-    public function build( Form $form, $offset, $length ) {
+    public function build( Form $form, $offset, $length, $params = array() ) {
 
         $data = $form->getData();
 

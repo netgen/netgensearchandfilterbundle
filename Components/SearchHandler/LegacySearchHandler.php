@@ -29,9 +29,9 @@ class LegacySearchHandler implements SearchHandler {
      *
      * @return result array
      */
-    public function search( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder, SearchResultConverter $resultConverter, $offset, $length ) {
+    public function search( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder, SearchResultConverter $resultConverter, $offset, $length, $params = array() ) {
 
-        $criteria = $searchCriteriaBuilder->build($form, $offset, $length);
+        $criteria = $searchCriteriaBuilder->build($form, $offset, $length, $params);
 
         $legacyKernelClosure = $this->kernel;
 
@@ -52,9 +52,9 @@ class LegacySearchHandler implements SearchHandler {
      * Return total search result count
      * @return count
      */
-    public function searchCount( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder ) {
+    public function searchCount( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder, $params = array() ) {
 
-        $criteria = $searchCriteriaBuilder->build($form, 0, 0);
+        $criteria = $searchCriteriaBuilder->build($form, 0, 0, $params );
 
         $legacyKernelClosure = $this->kernel;
 

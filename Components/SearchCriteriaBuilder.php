@@ -11,5 +11,5 @@ interface SearchCriteriaBuilder {
      *     *
      * @return array of criteria
      */
-    public function build( Form $form, $offset, $length );
+    public function build( Form $form, $offset, $length, $params = array() );
 } 
