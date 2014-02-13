@@ -147,7 +147,7 @@ The absolute minimum are the following steps:
 6. Create the route or the override so that controller action can be called
 
 Optionally you can also:
-- make your own handler
-- make your own result converter
-- make your own search result template
+* make your own handler
+* make your own result converter
+* make your own search result template
 
