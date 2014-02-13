@@ -1,25 +1,25 @@
 parameters:
-    netgen_search_filter.page_limit = 10
+    netgen_search_and_filter.page_limit: 10
 
 services:
 
 ### Handlers
 
 # Default Search Handler
-    netgen_search_filter.handler.default:
+    netgen_search_and_filter.handler.default:
         class: Netgen\SearchAndFilterBundle\Components\SearchHandler\DefaultSearchHandler
         arguments:
             - @ezpublish.api.repository
 
 # Legacy Search Handler
-    netgen_search_filter.handler.legacy:
+    netgen_search_and_filter.handler.legacy:
         class: Netgen\SearchAndFilterBundle\Components\SearchHandler\LegacySearchHandler
         arguments:
             - @ezpublish_legacy.kernel
             - @ezpublish.api.repository
 
 # eZ Find Search Handler
-    netgen_search_filter.handler.ezfind:
+    netgen_search_and_filter.handler.ezfind:
         class: Netgen\SearchAndFilterBundle\Components\SearchHandler\EzFindSearchHandler
         arguments:
             - @ezpublish_legacy.kernel
@@ -29,62 +29,33 @@ services:
 ### Converters
 
 # Legacy Search Result Converter
-    netgen_search_filter.result_converter.legacy:
+    netgen_search_and_filter.result_converter.legacy:
         class: Netgen\SearchAndFilterBundle\Components\SearchResultConverter\LegacySearchResultConverter
         arguments:
             - @ezpublish.api.repository
 
 # Default Search Result Pass
-    netgen_search_filter.result_converter.default:
+    netgen_search_and_filter.result_converter.default:
         class: Netgen\SearchAndFilterBundle\Components\SearchResultConverter\DefaultSearchResultConverter
 
 
 ### Form types
 
 # Basic Search Form Type
-    netgen_search_filter.form_type.basic_search_form_type:
+    netgen_search_and_filter.form_type.basic_search_form_type:
         class: Netgen\SearchAndFilterBundle\Form\Type\BasicSearchType
 
 
 ### Criterion builders
 
 # Legacy basic search criteria
-    netgen_search_filter.criteria_builder.legacy_basic_search:
+    netgen_search_and_filter.criteria_builder.legacy_basic_search:
         class: Netgen\SearchAndFilterBundle\Components\SearchCriteriaBuilder\LegacyBasicSearchCriteriaBuilder
 
 # eZ Find basic search criteria
-    netgen_search_filter.criteria_builder.ezfind_basic_search:
+    netgen_search_and_filter.criteria_builder.ezfind_basic_search:
         class: Netgen\SearchAndFilterBundle\Components\SearchCriteriaBuilder\EzFindBasicSearchCriteriaBuilder
 
 # Default basic search criteria
-    netgen_search_filter.criteria_builder.default_basic_search:
+    netgen_search_and_filter.criteria_builder.default_basic_search:
         class: Netgen\SearchAndFilterBundle\Components\SearchCriteriaBuilder\DefaultBasicSearchCriteriaBuilder
-
-
-### Instances
-
-# Example 1
-    netgen_search_filter.location_65:
-        class: Netgen\SearchAndFilterBundle\Components\SearchAdapter
-        arguments:
-            - @netgen_search_filter.handler.legacy
-            - @netgen_search_filter.form_type.basic_search_form_type
-            - @form.factory
-            - @netgen_search_filter.criteria_builder.legacy_basic_search
-            - @netgen_search_filter.result_converter.legacy
-            - NetgenSearchAndFilterBundle::search_results.html.twig
-            - NetgenSearchAndFilterBundle:forms:basic_search.html.twig
-            - %netgen_search_filter.page_limit%
-
-# Example 2
-    netgen_search_filter.location_64:
-        class: Netgen\SearchAndFilterBundle\Components\SearchAdapter
-        arguments:
-            - @netgen_search_filter.handler.default
-            - @netgen_search_filter.form_type.basic_search_form_type
-            - @form.factory
-            - @netgen_search_filter.criteria_builder.default_basic_search
-            - @netgen_search_filter.result_converter.default
-            - NetgenSearchAndFilterBundle::search_results.html.twig
-            - NetgenSearchAndFilterBundle:forms:basic_search.html.twig
-            - %netgen_search_filter.page_limit%
