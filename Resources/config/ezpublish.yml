@@ -1,9 +1,0 @@
-ezpublish:
-    system:
-        ezdemo_site_clean_group:
-            location_view:
-                full:
-                    my_ruleset:
-                        controller: NetgenSearchAndFilterBundle:Search:search
-                        match:
-                            Identifier\ContentType: [search_folder]

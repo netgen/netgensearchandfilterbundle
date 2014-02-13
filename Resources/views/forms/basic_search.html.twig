@@ -1,4 +1,4 @@
-    <form action="{{ path( "ez_urlalias", { locationId: location.id } ) }}" method="post" {{ form_enctype(form) }} class="well form-search">
+    <form action="{{ form_action }}" method="post" {{ form_enctype(form) }} class="well form-search">
 
         <!-- form errors -->
         {{ form_errors(form) }}
@@ -6,7 +6,7 @@
         {{ form_errors(form.term) }}
         {{ form_widget(form.term) }}
 
-        {{  form_rest(form) }}
+        {{ form_rest(form) }}
 
         <input class="btn btn-primary clear" type="submit" value="{{ 'Submit'|trans }}"/>
     </form>

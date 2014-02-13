@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    <h1>{{ ez_render_field( content, 'name' ) }}</h1>
+    <h1>{{ 'Search'|trans }}</h1>
 
-    {% include form_template with { form: form, location: location} %}
+    {% include form_template with { form: form, form_action: path( route, {'context': context} )} %}
 
     {% if show_results  %}
         <h2>{{ 'Search results'|trans }}</h2>
@@ -20,8 +20,8 @@
         {% if pager.haveToPaginate() %}
             <div class="pagerfanta">
                 {{ pagerfanta( pager, 'twitter_bootstrap_translated', {
-                    'routeName': 'ez_urlalias',
-                    'routeParams': query_string|merge({'locationId': content.contentInfo.mainLocationId})
+                    'routeName': route,
+                    'routeParams': query_string|merge({'context': context})
                 } )
                 }}
             </div>
