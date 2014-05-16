@@ -20,8 +20,6 @@ class SearchController extends Controller
      */
     public function searchRouteAction( $context )
     {
-        $repository = $this->getRepository();
-
         /** @var SearchAdapter $searchAdapter */
         $searchAdapter = $this->get('netgen_search_and_filter.route_'.$context);
 
@@ -29,7 +27,6 @@ class SearchController extends Controller
         $form = $searchAdapter->getForm();
 
         $response = new Response();
-        $response->setVary( 'X-User-Hash' );
 
         $pager = new Pagerfanta( $searchAdapter );
         $pager->setMaxPerPage( $searchAdapter->getPageLimit() );
