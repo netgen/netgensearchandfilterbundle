@@ -43,7 +43,8 @@ class SearchController extends Controller
             'form' => $form->createView(),
             'pager' => $pager,
             'show_results' => $showResults,
-            'query_string' => array($form->getName() => $form->getData())
+            'query_string' => array($form->getName() => $form->getData()),
+            'current_locale' => $this->getConfigResolver()->getParameter('RegionalSettings.Locale')
         ), $response);
     }
 
@@ -82,7 +83,8 @@ class SearchController extends Controller
             'content' => $repository->getContentService()->loadContentByContentInfo( $location->getContentInfo() ),
             'pager' => $pager,
             'show_results' => $showResults,
-            'query_string' => array($form->getName() => $form->getData())
+            'query_string' => array($form->getName() => $form->getData()),
+            'current_locale' => $this->getConfigResolver()->getParameter('RegionalSettings.Locale')
         ), $response);
 
     }
