@@ -2,19 +2,23 @@
 
 namespace Netgen\SearchAndFilterBundle\Components\SearchResultConverter;
 
+use eZ\Publish\API\Repository\Repository;
+use Netgen\SearchAndFilterBundle\Components\SearchAndFilterHit;
 use Netgen\SearchAndFilterBundle\Components\SearchResultConverter;
 use eZ\Publish\API\Repository\Values\Content\Search\SearchResult;
-use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
+//use eZ\Publish\API\Repository\Values\Content\Search\SearchHit;
 
 class LegacySearchResultConverter implements SearchResultConverter {
 
+    /**
+     * @var \eZ\Publish\API\Repository\Repository
+     */
     protected $repository;
 
     /**
      * Constructor
-
      */
-    public function __construct( $repository )
+    public function __construct( Repository $repository )
     {
         $this->repository = $repository;
     }
@@ -33,18 +37,38 @@ class LegacySearchResultConverter implements SearchResultConverter {
         );
 
         $contentService = $this->repository->getContentService();
+
         foreach ( $input['SearchResult'] as $doc )
         {
-            $searchHit = new SearchHit(
+            $contentObject = $contentService->loadContent( $doc->ContentObjectID );
+            $searchHit = new SearchAndFilterHit(
                 array(
-                    'score'       => 0,
-                    'valueObject' => $contentService->loadContent( $doc->ContentObjectID )
+                    'score'         => 0,
+                    'valueObject'   => $contentObject,
+                    'objectStates'  => $this->loadContentObjectStates($contentObject)
                 )
             );
             $result->searchHits[] = $searchHit;
         }
         return $result;
-
     }
 
-} 
+    private function loadContentObjectStates( $contentObject )
+    {
+        $objectStateService = $this->repository->getObjectStateService();
+        $objectStateGroups = $objectStateService->loadObjectStateGroups();
+        $objectStatesArray = array();
+        $stripedObjectStatesGroupArray = array('ez_lock');
+
+        foreach ( $objectStateGroups as $objectStateGroup )
+        {
+            if ( !in_array( $objectStateGroup->identifier, $stripedObjectStatesGroupArray ) )
+            {
+                $objectStatesArray[$objectStateGroup->identifier] = $objectStateService
+                    ->getContentState( $contentObject, $objectStateGroup );
+            }
+        }
+
+        return count($objectStatesArray) ? $objectStatesArray : null ;
+    }
+}
