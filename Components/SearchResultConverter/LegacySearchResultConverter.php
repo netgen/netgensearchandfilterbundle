@@ -45,7 +45,7 @@ class LegacySearchResultConverter implements SearchResultConverter {
                 array(
                     'score'         => 0,
                     'valueObject'   => $contentObject,
-                    'objectStates'  => $this->loadContentObjectStates($contentObject)
+                    'objectStates'  => $this->loadContentObjectStates( $contentObject->contentInfo )
                 )
             );
             $result->searchHits[] = $searchHit;
@@ -53,7 +53,7 @@ class LegacySearchResultConverter implements SearchResultConverter {
         return $result;
     }
 
-    private function loadContentObjectStates( $contentObject )
+    private function loadContentObjectStates( $contentObjectInfo )
     {
         $objectStateService = $this->repository->getObjectStateService();
         $objectStateGroups = $objectStateService->loadObjectStateGroups();
@@ -65,7 +65,7 @@ class LegacySearchResultConverter implements SearchResultConverter {
             if ( !in_array( $objectStateGroup->identifier, $stripedObjectStatesGroupArray ) )
             {
                 $objectStatesArray[$objectStateGroup->identifier] = $objectStateService
-                    ->getContentState( $contentObject, $objectStateGroup );
+                    ->getContentState( $contentObjectInfo, $objectStateGroup );
             }
         }
 
