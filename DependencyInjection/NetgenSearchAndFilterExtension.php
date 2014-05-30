@@ -24,7 +24,6 @@ class NetgenSearchAndFilterExtension extends Extension
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
-        $loader->load( 'config.yml' );
 
         $container->setParameter( "netgen_search_and_filter.main_pagelayout", $config["main_pagelayout"] );
     }

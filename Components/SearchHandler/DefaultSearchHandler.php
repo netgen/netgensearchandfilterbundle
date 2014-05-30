@@ -36,9 +36,9 @@ class DefaultSearchHandler implements SearchHandler {
      * Return total search result count
      * @return count
      */
-    public function searchCount( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder, $params ) {
+    public function searchCount( Form $form, SearchCriteriaBuilder $searchCriteriaBuilder, $params = array() ) {
 
-        $criteria = $searchCriteriaBuilder->build($form, 0, 0, $params = array());
+        $criteria = $searchCriteriaBuilder->build($form, 0, 0, $params);
 
         $searchResults = $this->repository->getSearchService()->findContent( $criteria );
 
