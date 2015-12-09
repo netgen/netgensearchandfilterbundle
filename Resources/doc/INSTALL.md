@@ -46,14 +46,15 @@ public function registerBundles()
 
 ### Edit configuration
 
-Put the following config in your `ezpublish/config/parameters.yml` file to set the main pagelayout template.
+Put the following config in your `ezpublish/config/config.yml` file to set the main pagelayout template.
 
 ```yml
 netgen_search_and_filter:
     main_pagelayout: "YOUR_MAIN_PAGELAYOUT_TWIG_TEMPLATE"
 ```
 
-Be sure to replace `YOUR_MAIN_PAGELAYOUT_TWIG_TEMPLATE`, e.g. "YourProjectBundle::pagelayout.html.twig"
+Be sure to replace `YOUR_MAIN_PAGELAYOUT_TWIG_TEMPLATE`, e.g. "YourProjectBundle::pagelayout.html.twig".
+Or just set `main_pagelayout` to `null` if you do not need main template (etc. using ajax actions).
 
 ### Use the bundle with basic search
 
