@@ -1,6 +1,11 @@
 Netgen Search And Filter Bundle
 ===============================
 
+[![Downloads](https://img.shields.io/packagist/dt/netgen/searchandfilter-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/searchandfilter-bundle/stats)
+[![Latest stable](https://img.shields.io/packagist/v/netgen/searchandfilter-bundle.svg?style=flat-square)](https://packagist.org/packages/netgen/searchandfilter-bundle)
+[![License](https://img.shields.io/github/license/netgen/netgensearchandfilterbundle.svg?style=flat-square)](LICENSE)
+[![PHP](https://img.shields.io/badge/php-%3E%3D%205.6-8892BF.svg?style=flat-square)](https://secure.php.net/)
+
 Netgen Search And Filter Bundle is an eZ Publish 5 solution for configuring pages with custom searching and filtering
 
 
