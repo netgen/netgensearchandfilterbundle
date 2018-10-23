@@ -9,21 +9,21 @@ services:
     netgen_search_and_filter.handler.default:
         class: Netgen\SearchAndFilterBundle\Components\SearchHandler\DefaultSearchHandler
         arguments:
-            - @ezpublish.api.repository
+            - "@ezpublish.api.repository"
 
 # Legacy Search Handler
     netgen_search_and_filter.handler.legacy:
         class: Netgen\SearchAndFilterBundle\Components\SearchHandler\LegacySearchHandler
         arguments:
-            - @ezpublish_legacy.kernel
-            - @ezpublish.api.repository
+            - "@ezpublish_legacy.kernel"
+            - "@ezpublish.api.repository"
 
 # eZ Find Search Handler
     netgen_search_and_filter.handler.ezfind:
         class: Netgen\SearchAndFilterBundle\Components\SearchHandler\EzFindSearchHandler
         arguments:
-            - @ezpublish_legacy.kernel
-            - @ezpublish.api.repository
+            - "@ezpublish_legacy.kernel"
+            - "@ezpublish.api.repository"
 
 
 ### Converters
@@ -32,7 +32,7 @@ services:
     netgen_search_and_filter.result_converter.legacy:
         class: Netgen\SearchAndFilterBundle\Components\SearchResultConverter\LegacySearchResultConverter
         arguments:
-            - @ezpublish.api.repository
+            - "@ezpublish.api.repository"
 
 # Default Search Result Pass
     netgen_search_and_filter.result_converter.default:
